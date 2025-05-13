@@ -1,0 +1,83 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@config '../../tailwind.config.js';
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+html{
+    width: 100vw;
+    height: 100vh;
+    background: #111827;
+}
+.floatingLineLengthLabel{
+    background: antiquewhite;
+    color: black;
+    border: 2px inset crimson;
+    position: absolute;
+    display: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 5000;
+}
+.floatingLineLengthLabel.balanced{
+    background: #00af00;
+    color: white;
+    border: 2px inset #002b00;
+}
+.lineLengthLabel{
+    display: block;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,0.7);
+    position: absolute;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: #4c4c4c;
+}
+.fa-055x{
+    font-size: 0.55em;
+}
+.fa-065x{
+    font-size: 0.65em;
+}
+.fa-075x{
+    font-size: 0.75em;
+}
+.fa-085x{
+    font-size: 0.85em;
+}
+.fa-095x{
+    font-size: 0.95em;
+}
+.fa-1_1x{
+    font-size: 1.1em;
+}
+.fa-1_2x{
+    font-size: 1.2em;
+}
+.fa-1_3x{
+    font-size: 1.3em;
+}
+.fa-1_4x{
+    font-size: 1.4em;
+}
+.fa-1_5x{
+    font-size: 1.5em;
+}
+.fa-1_6x{
+    font-size: 1.6em;
+}
+.fa-1_7x{
+    font-size: 1.7em;
+}
+.active{
+    color: #f9fafb;
+}
