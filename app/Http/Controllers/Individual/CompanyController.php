@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Individual;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Individual\CompanyRequest;
+use App\Http\Requests\CompanyRequest;
 use App\Models\Company;
 use App\Models\User;
 use Exception;

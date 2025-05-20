@@ -25,8 +25,8 @@ class InfoCollectionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "name.required" => "",
-            "collection.required" => "",
+            "name.required" => "Please provide the name for the information collection.",
+            "collection.required" => "Please enter at least one item for the collection.",
         ];
     }
 }

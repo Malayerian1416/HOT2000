@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="app" class="app">
-    <app></app>
+    <app :user="JSON.parse('{{Auth::user()}}')"></app>
 </div>
 </body>
 </html>

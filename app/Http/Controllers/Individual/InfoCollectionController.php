@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Individual;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Individual\CompanyRequest;
 use App\Http\Requests\InfoCollectionRequest;
 use App\Models\Company;
 use App\Models\InfoCollection;
@@ -13,14 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class InfoCollectionController extends Controller
 {
-    public function index(): \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Http\JsonResponse
+    public function index(): \Illuminate\Http\JsonResponse|array
     {
         try {
-            return response()->json([
+            return [
                 "infoCollections" => User::query()->findOrFail(Auth::id())->infoCollections()->get(),
                 "status" => "success",
                 "message" => "All info collections has been fetched successfully",
-            ]);
+            ];
         }
         catch (Exception $e) {
             return response()->json([
@@ -50,11 +49,11 @@ class InfoCollectionController extends Controller
     {
         //
     }
-    public function update(CompanyRequest $request, string $id): \Illuminate\Http\JsonResponse
+    public function update(InfoCollectionRequest $request, string $id): \Illuminate\Http\JsonResponse
     {
         try {
             $validatedData = $request->validated();
-            Company::query()->updateOrCreate(["id" => $id],$validatedData);
+            InfoCollection::query()->updateOrCreate(["id" => $id],$validatedData);
             return response()->json([
                 'data' => $validatedData,
                 'status' => 'success',

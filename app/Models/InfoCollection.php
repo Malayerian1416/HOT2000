@@ -15,14 +15,10 @@ class InfoCollection extends Model
 
     protected $table = 'info_collections';
     protected $fillable = ["user_id","name","collection","default"];
-    protected $appends = ["collection_array"];
+    protected $casts = ["collection" => "array"];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-    public function getCollectionArrayAttribute()
-    {
-        return json_decode($this->collection,true);
     }
 }

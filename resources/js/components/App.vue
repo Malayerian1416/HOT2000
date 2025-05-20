@@ -1,19 +1,50 @@
 <script setup>
-import {ref, reactive, onMounted, provide, watch} from "vue";
+import {ref, reactive, onMounted, provide, watch, nextTick, watchEffect} from "vue";
 import {initFlowbite} from "flowbite";
 import Alerts from "../components/Alerts.vue";
 import Loading from "../components/Loading.vue";
 import IMask from "imask";
 
-let alert = reactive({show: false, type: null, message: null, timeout: null});
+const props = defineProps({
+    user: Object
+})
+
+let alert = reactive({show: false, type: null, message: [], timeout: null});
 let loading = ref(false);
 let component = ref(null);
-
-watch(component, (newValue, oldValue) => {
-    {
-        if (newValue !== oldValue)
-            loading.value = true;
+let inputClass = reactive({
+    default: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500",
+    success: "bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500",
+    invalid: "invalid bg-red-50 text-gray-900 border border-red-500 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:placeholder-red-500 dark:border-red-500 dark:text-white",
+    errors: null,
+    setClass: async function () {
+        await nextTick();
+        const crudInputs = document.getElementById("crudModal");
+        const elements = crudInputs.querySelectorAll("input, select");
+        elements.forEach(element => {
+            if (Object.keys(this.errors).indexOf(element.name) >= 0) {
+                element.classList.remove(...element.classList);
+                element.className = this.invalid;
+                const small = document.createElement("small");
+                small.classList.add("text-red-500");
+                small.innerText = this.errors[element.name].join("<br/>");
+                element.insertAdjacentElement("afterend", small);
+            }
+            else {
+                if (element.classList.contains("invalid")) {
+                    element.classList.remove(...element.classList);
+                    element.className = this.default;
+                }
+            }
+        });
     }
+});
+watch(inputClass,() => {
+    inputClass.setClass();
+})
+watch(component, (newValue, oldValue) => {
+    if (newValue !== oldValue)
+        loading.value = true;
 });
 
 onMounted(() => {
@@ -24,7 +55,7 @@ onMounted(() => {
 const setMainElementPosition = () => {
     const navElement = document.getElementById("nav");
     const mainElement = document.getElementById("main");
-    mainElement.style.paddingTop = `${navElement.clientHeight}px`;
+    mainElement.style.paddingTop = `${navElement.offsetHeight}px`;
 }
 const maskElement = () => {
     const phoneMasks = document.querySelectorAll(".phoneMask");
@@ -91,6 +122,7 @@ provide('loading', loading);
 provide('buttonLoading', buttonLoading);
 provide('maskElement', maskElement);
 provide('filterTables', filterTables);
+provide("inputClass", inputClass);
 </script>
 
 <template>
@@ -144,17 +176,6 @@ provide('filterTables', filterTables);
                     </a>
                 </div>
                 <div class="flex items-center lg:order-2">
-                    <button
-                        type="button"
-                        data-drawer-toggle="drawer-navigation"
-                        aria-controls="drawer-navigation"
-                        class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    >
-                        <span class="sr-only">Toggle search</span>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
-                        </svg>
-                    </button>
                     <!-- Notifications -->
                     <button
                         type="button"
@@ -680,14 +701,8 @@ provide('filterTables', filterTables);
                         id="dropdown"
                     >
                         <div class="py-3 px-4">
-              <span
-                  class="block text-sm font-semibold text-gray-900 dark:text-white"
-              >Neil Sims</span
-              >
-                            <span
-                                class="block text-sm text-gray-900 truncate dark:text-white"
-                            >name@flowbite.com</span
-                            >
+                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{user["name"]}}</span>
+                            <span class="block text-sm text-gray-900 truncate dark:text-white">{{user["email"]}}</span>
                         </div>
                         <ul
                             class="py-1 text-gray-700 dark:text-gray-300"
@@ -810,47 +825,19 @@ provide('filterTables', filterTables);
             id="drawer-navigation"
         >
             <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
-                <form action="#" method="GET" class="md:hidden mb-2">
-                    <label for="sidebar-search" class="sr-only">Search</label>
-                    <div class="relative">
-                        <div
-                            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
-                        >
-                            <svg
-                                class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                ></path>
-                            </svg>
-                        </div>
-                        <input
-                            type="text"
-                            name="search"
-                            id="sidebar-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Search"
-                        />
-                    </div>
-                </form>
                 <ul class="space-y-2">
                     <li>
                         <button type="button" class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-pages" data-collapse-toggle="dropdown-pages">
-                            <i class="fa fa-memo-circle-info"></i>
-                            <span class="flex-1 ml-3 text-left whitespace-nowrap">Default Parameters</span>
+                            <i class="fad fa-database ps-1"></i>
+                            <span class="flex-1 ml-2 text-left whitespace-nowrap">Basics</span>
                             <i aria-hidden="true" class="fa fa-chevron-down fa-075x align-middle"></i>
                         </button>
                         <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                             <li>
-                                <a role="button" class="flex items-center cursor-pointer p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" @click="component = 'info-collection'">H2K File Info</a>
+                                <a role="button" class="flex items-center cursor-pointer p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" @click="component = 'company'">Companies</a>
                             </li>
                             <li>
-                                <a role="button" class="flex items-center cursor-pointer p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Upgrades</a>
+                                <a role="button" class="flex items-center cursor-pointer p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" @click="component = 'info-collection'">H2K File Info</a>
                             </li>
                         </ul>
                     </li>
@@ -858,7 +845,7 @@ provide('filterTables', filterTables);
                         <a
                             role="button"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                            @click="component = 'company'">
+                            >
                             <svg
                                 aria-hidden="true"
                                 class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
