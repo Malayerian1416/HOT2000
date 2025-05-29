@@ -7,7 +7,7 @@ import IMask from "imask";
 
 const props = defineProps({
     user: Object
-})
+});
 
 let alert = reactive({show: false, type: null, message: [], timeout: null});
 let loading = ref(false);
