@@ -20,6 +20,16 @@ class Wall{
     }
 
     xmlOutput() {
+        let windows,doors,floorHeaders;
+        this.components.windows.forEach(window => {
+            windows = windows + window.xmlOutput();
+        });
+        this.components.doors.forEach(door => {
+            doors = doors + door.xmlOutput();
+        });
+        this.components.floorHeaders.forEach(floorHeader => {
+            floorHeaders = floorHeaders + floorHeader.xmlOutput();
+        });
         return `<Wall adjacentEnclosedSpace="${this.adjacentEnclosedSpace}" id="${this.id}">
                 <Label>${this.label}</Label>
                 <Construction corners="${this.corners}" intersections="${this.intersections}">
@@ -31,6 +41,11 @@ class Wall{
                     <English>${this.facingDirection.english}</English>
                     <French>${this.facingDirection.french}</French>
                 </FacingDirection>
+                <Components>
+                ${doors}
+                ${windows}
+                ${floorHeaders}
+                </Components>
             </Wall>`;
     };
 

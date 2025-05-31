@@ -61,6 +61,15 @@ class Basement{
         this.wall.construction.ponyWallType.composite.forEach(section => {
             ponyWallSections = ponyWallSections + `<Section rank="${section.rank}" percentage="${section.percentage}" />`;
         });
+        this.components.windows.forEach(window => {
+            windows = windows + window.xmlOutput();
+        });
+        this.components.doors.forEach(door => {
+            doors = doors + door.xmlOutput();
+        });
+        this.components.floorHeaders.forEach(floorHeader => {
+            floorHeaders = floorHeaders + floorHeader.xmlOutput();
+        });
         return `<Basement isExposedSurface="${this.isExposedSurface}" exposedSurfacePerimeter="${this.exposedSurfacePerimeter}" id="${this.id}">
                 <Label>${this.label}</Label>
                 <Configuration type="${this.configuration.type}" subtype="${this.configuration.subtype}" overlap="${this.configuration.overlap}">${this.configuration.text}</Configuration>
@@ -104,7 +113,9 @@ class Basement{
                     <Measurements height="${this.wall.measurements.height}" depth="${this.wall.measurements.depth}" ponyWallHeight="${this.wall.measurements.ponyWallHeight}" />
                 </Wall>
                 <Components>
-
+                ${doors}
+                ${windows}
+                ${floorHeaders}
                 </Components>
             </Basement>`;
     };
