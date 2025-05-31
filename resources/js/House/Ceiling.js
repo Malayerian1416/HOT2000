@@ -1,10 +1,10 @@
-import {StructureByCode} from "../House/HouseLibrary.js";
+import {InsulationLayer1, InsulationLayer2, Interior, Spacing, StructureByCode} from "../House/HouseFileCodesLibrary.js";
 
 class Ceiling {
     id = null;
     label = null;
     type = {code: null, english: null, french: null};
-    ceilingType = {idref: null};
+    ceilingType = {idref: null, code: null};
     measurements = {
         length: 0,
         area: 0,
@@ -30,7 +30,7 @@ class Ceiling {
             </Ceiling>`;
     };
     codes = {
-        code: 2,
+        code: "2",
         construction: {
             gable: {
                 englishName: "Gable",
@@ -40,7 +40,11 @@ class Ceiling {
                     let structures = structuredClone(StructureByCode("2"));
                     structures.truss.componentTypes.splice(2, 11);
                     return structures;
-                }
+                },
+                spacing: Spacing(),
+                insulationLayer1: InsulationLayer1(),
+                insulationLayer2: InsulationLayer2(),
+                interior: Interior()
             },
             hip: {
                 englishName: "Hip",
@@ -50,7 +54,11 @@ class Ceiling {
                     let structures = structuredClone(StructureByCode("2"));
                     structures.truss.componentTypes.splice(2, 11);
                     return structures;
-                }
+                },
+                spacing: Spacing(),
+                insulationLayer1: InsulationLayer1(),
+                insulationLayer2: InsulationLayer2(),
+                interior: Interior()
             },
             cathedral: {
                 englishName: "Cathedral",
@@ -60,7 +68,11 @@ class Ceiling {
                     let structures = structuredClone(StructureByCode("2"));
                     structures.truss.componentTypes.splice(0, 2);
                     return structures;
-                }
+                },
+                spacing: Spacing(),
+                insulationLayer1: InsulationLayer1(),
+                insulationLayer2: InsulationLayer2(),
+                interior: Interior()
             },
             flat: {
                 englishName: "Flat",
@@ -70,7 +82,11 @@ class Ceiling {
                     let structures = structuredClone(StructureByCode("2"));
                     structures.truss.componentTypes.splice(0, 2);
                     return structures;
-                }
+                },
+                spacing: Spacing(),
+                insulationLayer1: InsulationLayer1(),
+                insulationLayer2: InsulationLayer2(),
+                interior: Interior()
             },
             scissor: {
                 englishName: "Scissor",
@@ -80,7 +96,11 @@ class Ceiling {
                     let structures = structuredClone(StructureByCode("2"));
                     structures.truss.componentTypes.splice(0, 2);
                     return structures;
-                }
+                },
+                spacing: Spacing(),
+                insulationLayer1: InsulationLayer1(),
+                insulationLayer2: InsulationLayer2(),
+                interior: Interior()
             },
         },
         roofSlope: {

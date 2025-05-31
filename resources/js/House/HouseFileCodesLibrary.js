@@ -192,6 +192,53 @@ const insulationLayer2 = [
     {englishName: "76 mm (3 in) Medium density spray foam", frenchName: "None", code: "F"},
     {englishName: "89 mm (3.5 in) Medium density spray foam", frenchName: "None", code: "G"},
 ];
+
+const facingDirection ={
+    notApplicable : {englishName: "N/A", frenchName: "S/O", code: "0"},
+    south : {englishName: "South", frenchName: "Sud", code: "1"},
+    southEast : {englishName: "Southeast", frenchName: "Sud-est", code: "2"},
+    east : {englishName: "East", frenchName: "Est", code: "3"},
+    northEast : {englishName: "Northeast", frenchName: "Nord-est", code: "4"},
+    north : {englishName: "North", frenchName: "Nord", code: "5"},
+    northWest : {englishName: "Northwest", frenchName: "Nord-ouest", code: "6"},
+    west : {englishName: "West", frenchName: "Ouest", code: "7"},
+    southWest : {englishName: "Southwest", frenchName: "Sud-ouest", code: "8"},
+};
+
+const sheathing = [
+    {englishName: "None", frenchName: "None", code: "0"},
+    {englishName: "Waferboard/OSB 9.5 mm (3/8 in)", frenchName: "None", code: "1"},
+    {englishName: "Waferboard/OSB 11.1 mm (7/16 in)", frenchName: "None", code: "2"},
+    {englishName: "Waferboard/OSB 15.9 mm (5/8 in)", frenchName: "None", code: "3"},
+    {englishName: "Plywood/Particle board 9.5 mm (3/8 in)", frenchName: "None", code: "4"},
+    {englishName: "Plywood/Particle board 12.7 mm (1/2 in)", frenchName: "None", code: "5"},
+    {englishName: "Plywood/Particle board 15.5 mm (5/8 in)", frenchName: "None", code: "6"},
+    {englishName: "Plywood/Particle board 18.5 mm (3/4 in)", frenchName: "None", code: "7"},
+    {englishName: "Fibreboard 9.5 mm (3/8 in)", frenchName: "None", code: "8"},
+    {englishName: "Fibreboard 11.1 mm (7/16 in)", frenchName: "None", code: "9"},
+    {englishName: "Gypsum sheathing 9.5 mm (3/8 in)", frenchName: "None", code: "A"},
+    {englishName: "Gypsum sheathing 12.7 mm (1/2 in)", frenchName: "None", code: "B"},
+
+];
+
+const exterior = [
+    {englishName: "None", frenchName: "None", code: "0"},
+    {englishName: "Wood (lapped)", frenchName: "None", code: "1"},
+    {englishName: "Hollow metal/vinyl cladding", frenchName: "None", code: "2"},
+    {englishName: "Insul. metal/vinyl cladding", frenchName: "None", code: "3"},
+    {englishName: "Brick", frenchName: "None", code: "4"},
+    {englishName: "Mortar", frenchName: "None", code: "5"},
+    {englishName: "Stucco", frenchName: "None", code: "6"},
+    {englishName: "Stone", frenchName: "None", code: "7"},
+    {englishName: "Quartzitic and sandstone", frenchName: "None", code: "8"},
+    {englishName: "Calcitic, dolomitic, limestone, marble, granite", frenchName: "None", code: "9"}
+];
+
+const studs = [
+    {englishName: "2 studs", frenchName: "None", code: "0"},
+    {englishName: "3 studs", frenchName: "None", code: "1"},
+    {englishName: "4 studs", frenchName: "None", code: "2"},
+]
 export const AllStructures = () => {
     return structures;
 }
@@ -212,10 +259,26 @@ export const Interior = () => {
     return interior;
 }
 
+export const Sheathing = () => {
+    return sheathing;
+}
+
 export const InsulationLayer1 = () => {
     return insulationLayer1;
 }
 
 export const InsulationLayer2 = () => {
     return insulationLayer2;
+}
+
+export const Exterior = () => {
+    return exterior;
+}
+
+export const Studs = () => {
+    return studs;
+}
+
+export const FacingDirection = () => {
+    return facingDirection;
 }
