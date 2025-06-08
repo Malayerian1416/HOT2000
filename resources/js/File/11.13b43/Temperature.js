@@ -28,3 +28,4 @@ class Temperature {
         </Temperatures>`;
     };
 }
+export default Temperature;

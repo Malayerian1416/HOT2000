@@ -1,4 +1,12 @@
+import Temperature from "Temperature.js";
+import BaseLoad from "BaseLoad.js";
+import Generation from "Generation.js";
+import NaturalAirInfiltration from "NaturalAirInfiltration.js";
+import Ventilation from "Ventilation.js";
+import HeatingCooling from "HeatingCooling.js";
+
 class House {
+    id = 1;
     label = {english: 'english', french: 'french'};
     specifications = {
         houseType: {code: null, english: 'english', french: 'french'},
@@ -16,4 +24,9 @@ class House {
     windowTightness = {code: null, value: null, english: 'english', french: 'french'};
     temperatures = new Temperature();
     baseLoads = new BaseLoad();
+    generation = new Generation();
+    naturalAirInfiltration = new NaturalAirInfiltration();
+    ventilation = new Ventilation();
+    heatingCooling = new HeatingCooling();
 }
+export default House;

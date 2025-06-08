@@ -1,4 +1,4 @@
-import {Exterior, InsulationLayer1, InsulationLayer2, Interior, Sheathing, Spacing, StructureByCode, Studs} from "../House/HouseFileCodesLibrary.js";
+import {Exterior, InsulationLayer1, InsulationLayer2, Interior, Sheathing, Spacing, StructureByCode, Studs} from "./HouseFileCodesLibrary.js";
 
 class Wall{
     id = null;

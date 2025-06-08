@@ -1,4 +1,4 @@
-class BaseLoad extends House{
+class BaseLoad {
     id = null;
     basementFractionOfInternalGains = null;
     commonSpaceElectricalConsumption = null;
@@ -127,3 +127,4 @@ class BaseLoad extends House{
         </BaseLoads>`;
     }
 }
+export default BaseLoad;

@@ -1,4 +1,4 @@
-import {InsulationLayer1, InsulationLayer2, Interior, Spacing, StructureByCode} from "../House/HouseFileCodesLibrary.js";
+import {InsulationLayer1, InsulationLayer2, Interior, Spacing, StructureByCode} from "./HouseFileCodesLibrary.js";
 
 class Ceiling {
     id = null;
