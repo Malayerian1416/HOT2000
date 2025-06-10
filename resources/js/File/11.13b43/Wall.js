@@ -1,4 +1,14 @@
-import {Exterior, InsulationLayer1, InsulationLayer2, Interior, Sheathing, Spacing, StructureByCode, Studs} from "./HouseFileCodesLibrary.js";
+import {
+    Exterior,
+    InsulationLayer1,
+    InsulationLayer2,
+    Interior,
+    Lintel,
+    Sheathing,
+    Spacing,
+    StructureByCode,
+    Studs
+} from "./HouseFileCodesLibrary.js";
 
 class Wall{
     id = null;
@@ -52,6 +62,7 @@ class Wall{
     codes = {
         code: "1",
         construction: {
+            lintel: Lintel(),
             types: StructureByCode("1"),
             spacing: Spacing(),
             insulationLayer1: InsulationLayer1(),

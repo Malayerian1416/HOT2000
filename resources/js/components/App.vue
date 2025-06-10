@@ -8,6 +8,8 @@ import IMask from "imask";
 const props = defineProps({
     user: Object
 });
+const version = "11.13b43";
+let library;
 
 let alert = reactive({show: false, type: null, message: [], timeout: null});
 let loading = ref(false);
@@ -47,7 +49,8 @@ watch(component, (newValue, oldValue) => {
         loading.value = true;
 });
 
-onMounted(() => {
+onMounted(async () => {
+    //library = reactive(await loadLibrary(version));
     initFlowbite();
     setMainElementPosition();
     document.addEventListener("onresize", setMainElementPosition)
@@ -117,6 +120,15 @@ const filterTables = (inputElement) => {
         }
     }
 };
+async function loadLibrary(version) {
+    const path = `../File/${version}/HouseFile.js`;
+    try {
+        const module = await import(path);
+        return new module.default;
+    } catch (error) {
+        console.error("Error loading module:", error);
+    }
+}
 provide("alert", alert);
 provide('loading', loading);
 provide('buttonLoading', buttonLoading);

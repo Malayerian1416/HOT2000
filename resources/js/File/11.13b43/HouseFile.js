@@ -1,7 +1,7 @@
-import Version from "Version.js";
-import Application from "Application.js";
-import ProgramInformation from "ProgramInformation.js";
-import House from "House.js";
+import Version from "./Version.js";
+import Application from "./Application.js";
+import ProgramInformation from "./ProgramInformation.js";
+import House from "./House.js";
 
 class HouseFile {
     lang = null;

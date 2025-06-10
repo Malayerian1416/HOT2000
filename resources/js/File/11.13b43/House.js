@@ -1,9 +1,9 @@
-import Temperature from "Temperature.js";
-import BaseLoad from "BaseLoad.js";
-import Generation from "Generation.js";
-import NaturalAirInfiltration from "NaturalAirInfiltration.js";
-import Ventilation from "Ventilation.js";
-import HeatingCooling from "HeatingCooling.js";
+import Temperature from "./Temperature.js";
+import BaseLoad from "./BaseLoad.js";
+import Generation from "./Generation.js";
+import NaturalAirInfiltration from "./NaturalAirInfiltration.js";
+import Ventilation from "./Ventilation.js";
+import HeatingCooling from "./HeatingCooling.js";
 
 class House {
     id = 1;
@@ -28,5 +28,15 @@ class House {
     naturalAirInfiltration = new NaturalAirInfiltration();
     ventilation = new Ventilation();
     heatingCooling = new HeatingCooling();
+    components = {
+        ceilings: [],
+        walls: [],
+        floors: [],
+        crawlspaces: [],
+        basements: [],
+        slabs: [],
+        hotWater: null,
+    };
+
 }
 export default House;
