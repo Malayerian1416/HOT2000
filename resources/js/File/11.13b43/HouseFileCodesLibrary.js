@@ -263,583 +263,146 @@ const studs = [
     {englishName: "4 studs", frenchName: "None", code: "2"},
 ];
 
-const heatingSystems = {
-    baseboards: {
-        equipmentInformation: {numberOfElectronicThermostats: null, manufacturer: null, model: null},
-        specifications: {
-            sizingFactor: null,
-            efficiency: null,
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null}
-        },
+const ventilatorList = {
+    baseVentilator: {
+        supplyFlowrate: null,
+        exhaustFlowrate: null,
+        fanPower1: null,
+        isDefaultFanPower: null,
+        isEnergyStar: null,
+        isHomeVentilatingInstituteCertified: null,
+        isSupplemental: null,
+        equipmentInformation: {manufacturer: null, model: null},
+        ventilatorType: {code: null, english: null, french: null},
         xmlOutput() {
-            return `<Baseboards>
-                    <EquipmentInformation numberOfElectronicThermostats="${this.baseboards.equipmentInformation.numberOfElectronicThermostats}">
-                        <Manufacturer>${this.baseboards.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.baseboards.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <Specifications sizingFactor="${this.baseboards.specifications.sizingFactor}" efficiency="${this.baseboards.specifications.efficiency}">
-                        <OutputCapacity code="${this.baseboards.specifications.outputCapacity.code}" value="${this.baseboards.specifications.outputCapacity.value}" uiUnits="${this.baseboards.specifications.outputCapacity.uiUnits}">
-                            <English>${this.baseboards.specifications.outputCapacity.english}</English>
-                            <French>${this.baseboards.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                    </Specifications>
-                </Baseboards>`;
-        }
-    },
-    furnace: {
-        equipmentInformation: {energystar: null, manufacturer: null, model: null},
-        equipment: {
-            isBiEnergy: null,
-            switchoverTemperature: null,
-            energySource: {code: null, english: null, french: null},
-            equipmentType: {code: null, english: null, french: null},
-        },
-        specifications: {
-            sizingFactor: null,
-            efficiency: null,
-            isSteadyState: null,
-            pilotLight: null,
-            flueDiameter: null,
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null}
-        },
-        xmlOutput() {
-            return `<Furnace>
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}">
+            return `<BaseVentilator supplyFlowrate="${this.supplyFlowrate}" exhaustFlowrate="${this.exhaustFlowrate}" fanPower1="${this.fanPower1}" isDefaultFanpower="${this.isDefaultFanPower}" isEnergyStar="${this.isEnergyStar}" isHomeVentilatingInstituteCertified="${this.isHomeVentilatingInstituteCertified}" isSupplemental="${this.isSupplemental}">
+                    <EquipmentInformation>
                         <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
                         <Model>${this.equipmentInformation.model}</Model>
                     </EquipmentInformation>
-                    <Equipment isBiEnergy="${this.equipment.isBiEnergy}" switchoverTemperature="${this.equipment.switchoverTemperature}">
-                        <EnergySource code="${this.equipment.energySource.code}">
-                            <English>${this.equipment.energySource.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EnergySource>
-                        <EquipmentType code="${this.equipment.equipmentType.code}">
-                            <English>${this.equipment.equipmentType.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EquipmentType>
-                    </Equipment>
-                    <Specifications sizingFactor="${this.specifications.sizingFactor}" efficiency="${this.specifications.efficiency}" isSteadyState="${this.specifications.isSteadyState}" pilotLight="${this.specifications.pilotLight}" flueDiameter="${this.specifications.flueDiameter}">
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                    </Specifications>
-                </Furnace>`;
+                    <VentilatorType code="${this.ventilatorType.code}">
+                        <English>${this.ventilatorType.english}</English>
+                        <French>${this.ventilatorType.french}</French>
+                    </VentilatorType>
+                </BaseVentilator>`;
         }
     },
-    boiler: {
-        equipmentInformation: {energystar: null, manufacturer: null, model: null},
-        equipment: {
-            isBiEnergy: null,
-            switchoverTemperature: null,
-            energySource: {code: null, english: null, french: null},
-            equipmentType: {code: null, english: null, french: null},
-        },
-        specifications: {
-            sizingFactor: null,
-            efficiency: null,
-            isSteadyState: null,
-            pilotLight: null,
-            flueDiameter: null,
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null}
-        },
+    dryer: {
+        supplyFlowrate: null,
+        exhaustFlowrate: null,
+        fanPower1: null,
+        isDefaultFanPower: null,
+        isEnergyStar: null,
+        isHomeVentilatingInstituteCertified: null,
+        isSupplemental: null,
+        equipmentInformation: {manufacturer: null, model: null},
+        ventilatorType: {code: null, english: null, french: null},
+        operationSchedule: {code: null, value: null, english: null, french: null},
+        exhaust: {code: null, english: null, french: null},
         xmlOutput() {
-            return `<Boiler>
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}">
+            return `<Dryer supplyFlowrate="${this.supplyFlowrate}" exhaustFlowrate="${this.exhaustFlowrate}" fanPower1="${this.fanPower1}" isDefaultFanpower="${this.isDefaultFanPower}" isEnergyStar="${this.isEnergyStar}" isHomeVentilatingInstituteCertified="${this.isHomeVentilatingInstituteCertified}" isSupplemental="${this.isSupplemental}">
+                    <EquipmentInformation>
                         <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
                         <Model>${this.equipmentInformation.model}</Model>
                     </EquipmentInformation>
-                    <Equipment isBiEnergy="${this.equipment.isBiEnergy}" switchoverTemperature="${this.equipment.switchoverTemperature}">
-                        <EnergySource code="${this.equipment.energySource.code}">
-                            <English>${this.equipment.energySource.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EnergySource>
-                        <EquipmentType code="${this.equipment.equipmentType.code}">
-                            <English>${this.equipment.equipmentType.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EquipmentType>
-                    </Equipment>
-                    <Specifications sizingFactor="${this.specifications.sizingFactor}" efficiency="${this.specifications.efficiency}" isSteadyState="${this.specifications.isSteadyState}" pilotLight="${this.specifications.pilotLight}" flueDiameter="${this.specifications.flueDiameter}">
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                    </Specifications>
-                </Boiler>`;
+                    <VentilatorType code="${this.ventilatorType.code}">
+                        <English>${this.ventilatorType.english}</English>
+                        <French>${this.ventilatorType.french}</French>
+                    </VentilatorType>
+                    <OperationSchedule code="${this.operationSchedule.code}" value="${this.operationSchedule.value}">
+                        <English>${this.operationSchedule.english}</English>
+                        <French>${this.operationSchedule.french}</French>
+                    </OperationSchedule>
+                    <Exhaust code="${this.exhaust.code}">
+                        <English>${this.exhaust.english}</English>
+                        <French>${this.exhaust.french}</French>
+                    </Exhaust>
+                </Dryer>`;
         }
     },
-    comboHeatDhw: {
-        equipmentInformation: {energystar: null, manufacturer: null, model: null},
-        equipment: {
-            isBiEnergy: null,
-            switchoverTemperature: null,
-            energySource: {code: null, english: null, french: null},
-            equipmentType: {code: null, english: null, french: null},
-        },
-        specifications: {
-            sizingFactor: null,
-            efficiency: null,
-            isSteadyState: null,
-            pilotLight: null,
-            flueDiameter: null,
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null}
-        },
-        comboTankAndPump: {
-            tankCapacity: {code: null, value: null, english: null, french: null},
-            energyFactor: {useDefaults: null},
-            tankLocation: {code: null, english: null, french: null},
-            circulationPump: {isCalculated: null, value: null, hasEnergyEfficientMotor: null}
-        },
-        xmlOutput() {
-            return `<ComboHeatDhw>
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}">
-                        <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <Equipment isBiEnergy="${this.equipment.isBiEnergy}" switchoverTemperature="${this.equipment.switchoverTemperature}">
-                        <EnergySource code="${this.equipment.energySource.code}">
-                            <English>${this.equipment.energySource.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EnergySource>
-                        <EquipmentType code="${this.equipment.equipmentType.code}">
-                            <English>${this.equipment.equipmentType.english}</English>
-                            <French>${this.equipment.energySource.french}</French>
-                        </EquipmentType>
-                    </Equipment>
-                    <Specifications sizingFactor="${this.specifications.sizingFactor}" efficiency="${this.specifications.efficiency}" isSteadyState="${this.specifications.isSteadyState}" pilotLight="${this.specifications.pilotLight}" flueDiameter="${this.specifications.flueDiameter}">
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                    </Specifications>
-                    <ComboTankAndPump>
-                        <TankCapacity code="${this.comboTankAndPump.tankCapacity.code}" value="${this.comboTankAndPump.tankCapacity.value}">
-                            <English>${this.comboTankAndPump.tankCapacity.english}</English>
-                            <French>${this.comboTankAndPump.tankCapacity.french}</French>
-                        </TankCapacity>
-                        <EnergyFactor useDefaults="${this.comboTankAndPump.energyFactor.useDefaults}" />
-                        <TankLocation code="${this.comboTankAndPump.tankLocation.code}">
-                            <English>${this.comboTankAndPump.tankLocation.english}</English>
-                            <French>${this.comboTankAndPump.tankLocation.french}</French>
-                        </TankLocation>
-                        <CirculationPump isCalculated="${this.comboTankAndPump.circulationPump.isCalculated}" value="${this.comboTankAndPump.circulationPump.value}" hasEnergyEfficientMotor="${this.comboTankAndPump.circulationPump.hasEnergyEfficientMotor}" />
-                    </ComboTankAndPump>
-                </ComboHeatDhw>`;
-        }
-    },
-    P9: {
-        numberOfSystems: null,
-        thermalPerformanceFactor: null,
-        annualElectricity: null,
-        spaceHeatingCapacity: null,
-        spaceHeatingEfficiency: null,
-        waterHeatingPerformanceFactor: null,
-        burnerInput: null,
-        recoveryEfficiency: null,
-        isUserSpecified: null,
-        equipmentInformation: {energystar: null, manufacturer: null, model: null},
-        testData: {
-            controlsPower: null,
-            circulationPower: null,
-            dailyUse: null,
-            standbyLossWithFan: null,
-            standbyLossWithoutFan: null,
-            oneHourRatingHotWater: null,
-            oneHourRatingConcurrent: null,
-            energySource: {code: null, english: null, french: null},
-            netEfficiency: {loadPerformance15: null, loadPerformance40: null, loadPerformance100: null},
-            electricalUse: {loadPerformance15: null, loadPerformance40: null, loadPerformance100: null},
-            blowerPower: {loadPerformance15: null, loadPerformance40: null, loadPerformance100: null},
-        },
-        xmlOutput() {
-            return `<P9 numberOfSystems="${this.numberOfSystems}" thermalPerformanceFactor="${this.thermalPerformanceFactor}" annualElectricity="${this.annualElectricity}" spaceHeatingCapacity="${this.spaceHeatingCapacity}" spaceHeatingEfficiency="${this.spaceHeatingEfficiency}" waterHeatingPerformanceFactor="${this.waterHeatingPerformanceFactor}" burnerInput="${this.burnerInput}" recoveryEfficiency="${this.recoveryEfficiency}" isUserSpecified="${this.isUserSpecified}">
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}">
-                        <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <TestData controlsPower="${this.testData.controlsPower}" circulationPower="${this.testData.circulationPower}" dailyUse="${this.testData.dailyUse}" standbyLossWithFan="${this.testData.standbyLossWithFan}" standbyLossWithoutFan="${this.testData.standbyLossWithoutFan}" oneHourRatingHotWater="${this.testData.oneHourRatingHotWater}" oneHourRatingConcurrent="${this.testData.oneHourRatingConcurrent}">
-                        <EnergySource code="${this.testData.energySource.code}">
-                            <English>${this.testData.energySource.english}</English>
-                            <French>${this.testData.energySource.french}</French>
-                        </EnergySource>
-                        <NetEfficiency loadPerformance15="${this.testData.netEfficiency.loadPerformance15}" loadPerformance40="${this.testData.netEfficiency.loadPerformance40}" loadPerformance100="${this.testData.netEfficiency.loadPerformance100}" />
-                        <ElectricalUse loadPerformance15="${this.testData.electricalUse.loadPerformance15}" loadPerformance40="${this.testData.electricalUse.loadPerformance40}" loadPerformance100="${this.testData.electricalUse.loadPerformance100}" />
-                        <BlowerPower loadPerformance15="${this.testData.blowerPower.loadPerformance15}" loadPerformance40="${this.testData.blowerPower.loadPerformance40}" loadPerformance100="${this.testData.blowerPower.loadPerformance100}" />
-                    </TestData>
-                </P9>`;
-        }
-    }
-};
-
-const coolingSystems = {
-    NA: {},
-    airHeatPump: {
-        equipmentInformation: {energystar: null, CCASHP: null, AHRI: null, manufacturer: null, model: null},
-        equipment: {
-            crankcaseHeater: null,
-            type: {code: null, english: null, french: null},
-            function: {code: null, english: null, french: null}
-        },
-        specifications: {
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null},
-            heatingEfficiency: {isCop: null, unit: null, value: null},
-            coolingEfficiency: {isCop: null, unit: null, value: null}
-        },
-        temperature: {
-            cutoffType: {code: null, english: null, french: null},
-            ratingType: {code: null, value: null, english: null, french: null}
-        },
-        coolingParameters: {
-            sensibleHeatRatio: null,
-            openableWindowArea: null,
-            fansAndPump: {
-                flowRate: null,
-                hasEnergyEfficientMotor: null,
-                mode: {code: null, english: null, french: null},
-                power: {isCalculated: null}
-            }
-        },
-        coldClimateHeatPump: {
-            heatingEfficiency: null,
-            coolingEfficiency: null,
-            heatingEfficiencyUnit: null,
-            coolingEfficiencyUnit: null,
-            capacity: null,
-            uiUnits: null,
-            cop: null,
-            capacityMaintenance: null
-        },
-        xmlOutput() {
-            return `<AirHeatPump>
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}" CCASHP="${this.equipmentInformation.CCASHP}" AHRI="${this.equipmentInformation.AHRI}">
-                        <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <Equipment crankcaseHeater="${this.equipment.crankcaseHeater}">
-                        <Type code="${this.equipment.type.code}">
-                            <English>${this.equipment.type.english}</English>
-                            <French>${this.equipment.type.french}</French>
-                        </Type>
-                        <Function code="${this.equipment.function.code}">
-                            <English>${this.equipment.function.english}</English>
-                            <French>${this.equipment.function.french}</French>
-                        </Function>
-                    </Equipment>
-                    <Specifications>
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                        <HeatingEfficiency isCop="${this.specifications.heatingEfficiency.isCop}" unit="${this.specifications.heatingEfficiency.unit}" value="${this.specifications.heatingEfficiency.value}" />
-                        <CoolingEfficiency isCop="${this.specifications.coolingEfficiency.isCop}" unit="${this.specifications.coolingEfficiency.unit}" value="${this.specifications.coolingEfficiency.value}" />
-                    </Specifications>
-                    <Temperature>
-                        <CutoffType code="${this.temperature.cutoffType.code}">
-                            <English>${this.temperature.cutoffType.english}</English>
-                            <French>${this.temperature.cutoffType.french}</French>
-                        </CutoffType>
-                        <RatingType code="${this.temperature.ratingType.code}" value="${this.temperature.ratingType.value}">
-                            <English>${this.temperature.ratingType.english}</English>
-                            <French>${this.temperature.ratingType.french}</French>
-                        </RatingType>
-                    </Temperature>
-                    <CoolingParameters sensibleHeatRatio="${this.coolingParameters.sensibleHeatRatio}" openableWindowArea="${this.coolingParameters.openableWindowArea}">
-                        <FansAndPump flowRate="${this.coolingParameters.fansAndPump.flowRate}" hasEnergyEfficientMotor="${this.coolingParameters.fansAndPump.hasEnergyEfficientMotor}">
-                            <Mode code="${this.coolingParameters.fansAndPump.mode.code}">
-                                <English>${this.coolingParameters.fansAndPump.mode.english}</English>
-                                <French>${this.coolingParameters.fansAndPump.mode.french}</French>
-                            </Mode>
-                            <Power isCalculated="${this.coolingParameters.fansAndPump.power}" />
-                        </FansAndPump>
-                    </CoolingParameters>
-                    <ColdClimateHeatPump heatingEfficiency="${this.coldClimateHeatPump.heatingEfficiency}" coolingEfficiency="${this.coldClimateHeatPump.coolingEfficiency}" heatingEfficiencyUnit="${this.coldClimateHeatPump.heatingEfficiencyUnit}" coolingEfficiencyUnit="${this.coldClimateHeatPump.coolingEfficiencyUnit}" capacity="${this.coldClimateHeatPump.capacity}" uiUnits="${this.coldClimateHeatPump.uiUnits}" cop="${this.coldClimateHeatPump.cop}" capacityMaintenance="${this.coldClimateHeatPump.capacityMaintenance}" />
-                </AirHeatPump>`;
-        }
-    },
-    waterHeatPump: {
-        equipmentInformation: {canCsaC448: null, CCASHP: null, AHRI: null, manufacturer: null, model: null},
-        equipment: {
-            crankcaseHeater: null,
-            function: {code: null, english: null, french: null}
-        },
-        specifications: {
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null},
-            heatingEfficiency: {isCop: null, unit: null, value: null},
-            coolingEfficiency: {isCop: null, unit: null, value: null}
-        },
-        temperature: {
-            cutoffType: {code: null, english: null, french: null},
-            ratingType: {code: null, value: null, english: null, french: null}
-        },
-        sourceTemperature: {depth: null, use: {code: null, english: null, french: null}},
-        coolingParameters: {
-            sensibleHeatRatio: null,
-            openableWindowArea: null,
-            fansAndPump: {
-                flowRate: null,
-                hasEnergyEfficientMotor: null,
-                mode: {code: null, english: null, french: null},
-                power: {isCalculated: null}
-            }
-        },
-        coldClimateHeatPump: {
-            heatingEfficiency: null,
-            coolingEfficiency: null,
-            heatingEfficiencyUnit: null,
-            coolingEfficiencyUnit: null,
-            capacity: null,
-            uiUnits: null,
-            cop: null,
-            capacityMaintenance: null
-        },
-        xmlOutput() {
-            return `<WaterHeatPump>
-                    <EquipmentInformation canCsaC448="${this.equipmentInformation.canCsaC448}" CCASHP="${this.equipmentInformation.CCASHP}" AHRI="${this.equipmentInformation.AHRI}">
-                        <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <Equipment crankcaseHeater="${this.equipment.crankcaseHeater}">
-                        <Function code="${this.equipment.function.code}">
-                            <English>${this.equipment.function.english}</English>
-                            <French>${this.equipment.function.french}</French>
-                        </Function>
-                    </Equipment>
-                    <Specifications>
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                        <HeatingEfficiency isCop="${this.specifications.heatingEfficiency.isCop}" unit="${this.specifications.heatingEfficiency.unit}" value="${this.specifications.heatingEfficiency.value}" />
-                        <CoolingEfficiency isCop="${this.specifications.coolingEfficiency.isCop}" unit="${this.specifications.coolingEfficiency.unit}" value="${this.specifications.coolingEfficiency.value}" />
-                    </Specifications>
-                    <Temperature>
-                        <CutoffType code="${this.temperature.cutoffType.code}">
-                            <English>${this.temperature.cutoffType.english}</English>
-                            <French>${this.temperature.cutoffType.french}</French>
-                        </CutoffType>
-                        <RatingType code="${this.temperature.ratingType.code}" value="${this.temperature.ratingType.value}">
-                            <English>${this.temperature.ratingType.english}</English>
-                            <French>${this.temperature.ratingType.french}</French>
-                        </RatingType>
-                    </Temperature>
-                    <SourceTemperature depth="${this.sourceTemperature.depth}">
-                        <Use code="${this.sourceTemperature.use.code}">
-                            <English>${this.sourceTemperature.use.english}</English>
-                            <French>${this.sourceTemperature.use.french}</French>
-                        </Use>
-                    </SourceTemperature>
-                    <CoolingParameters sensibleHeatRatio="${this.coolingParameters.sensibleHeatRatio}" openableWindowArea="${this.coolingParameters.openableWindowArea}">
-                        <FansAndPump flowRate="${this.coolingParameters.fansAndPump.flowRate}" hasEnergyEfficientMotor="${this.coolingParameters.fansAndPump.hasEnergyEfficientMotor}">
-                            <Mode code="${this.coolingParameters.fansAndPump.mode.code}">
-                                <English>${this.coolingParameters.fansAndPump.mode.english}</English>
-                                <French>${this.coolingParameters.fansAndPump.mode.french}</French>
-                            </Mode>
-                            <Power isCalculated="${this.coolingParameters.fansAndPump.power}" />
-                        </FansAndPump>
-                    </CoolingParameters>
-                    <ColdClimateHeatPump heatingEfficiency="${this.coldClimateHeatPump.heatingEfficiency}" coolingEfficiency="${this.coldClimateHeatPump.coolingEfficiency}" heatingEfficiencyUnit="${this.coldClimateHeatPump.heatingEfficiencyUnit}" coolingEfficiencyUnit="${this.coldClimateHeatPump.coolingEfficiencyUnit}" capacity="${this.coldClimateHeatPump.capacity}" uiUnits="${this.coldClimateHeatPump.uiUnits}" cop="${this.coldClimateHeatPump.cop}" capacityMaintenance="${this.coldClimateHeatPump.capacityMaintenance}" />
-                </WaterHeatPump>`;
-        }
-    },
-    groundHeatPump: {
-        equipmentInformation: {canCsaC448: null, CCASHP: null, AHRI: null, manufacturer: null, model: null},
-        equipment: {
-            crankcaseHeater: null,
-            function: {code: null, english: null, french: null}
-        },
-        specifications: {
-            outputCapacity: {code: null, value: null, uiUnits: null, english: null, french: null},
-            heatingEfficiency: {isCop: null, unit: null, value: null},
-            coolingEfficiency: {isCop: null, unit: null, value: null}
-        },
-        temperature: {
-            cutoffType: {code: null, english: null, french: null},
-            ratingType: {code: null, value: null, english: null, french: null}
-        },
-        sourceTemperature: {depth: null, use: {code: null, english: null, french: null}},
-        coolingParameters: {
-            sensibleHeatRatio: null,
-            openableWindowArea: null,
-            fansAndPump: {
-                flowRate: null,
-                hasEnergyEfficientMotor: null,
-                mode: {code: null, english: null, french: null},
-                power: {isCalculated: null}
-            }
-        },
-        coldClimateHeatPump: {
-            heatingEfficiency: null,
-            coolingEfficiency: null,
-            heatingEfficiencyUnit: null,
-            coolingEfficiencyUnit: null,
-            capacity: null,
-            uiUnits: null,
-            cop: null,
-            capacityMaintenance: null
-        },
-        xmlOutput() {
-            return `<GroundHeatPump>
-                    <EquipmentInformation canCsaC448="${this.equipmentInformation.canCsaC448}" CCASHP="${this.equipmentInformation.CCASHP}" AHRI="${this.equipmentInformation.AHRI}">
-                        <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.equipmentInformation.model}</Model>
-                    </EquipmentInformation>
-                    <Equipment crankcaseHeater="${this.equipment.crankcaseHeater}">
-                        <Function code="${this.equipment.function.code}">
-                            <English>${this.equipment.function.english}</English>
-                            <French>${this.equipment.function.french}</French>
-                        </Function>
-                    </Equipment>
-                    <Specifications>
-                        <OutputCapacity code="${this.specifications.outputCapacity.code}" value="${this.specifications.outputCapacity.value}" uiUnits="${this.specifications.outputCapacity.uiUnits}">
-                            <English>${this.specifications.outputCapacity.english}</English>
-                            <French>${this.specifications.outputCapacity.french}</French>
-                        </OutputCapacity>
-                        <HeatingEfficiency isCop="${this.specifications.heatingEfficiency.isCop}" unit="${this.specifications.heatingEfficiency.unit}" value="${this.specifications.heatingEfficiency.value}" />
-                        <CoolingEfficiency isCop="${this.specifications.coolingEfficiency.isCop}" unit="${this.specifications.coolingEfficiency.unit}" value="${this.specifications.coolingEfficiency.value}" />
-                    </Specifications>
-                    <Temperature>
-                        <CutoffType code="${this.temperature.cutoffType.code}">
-                            <English>${this.temperature.cutoffType.english}</English>
-                            <French>${this.temperature.cutoffType.french}</French>
-                        </CutoffType>
-                        <RatingType code="${this.temperature.ratingType.code}" value="${this.temperature.ratingType.value}">
-                            <English>${this.temperature.ratingType.english}</English>
-                            <French>${this.temperature.ratingType.french}</French>
-                        </RatingType>
-                    </Temperature>
-                    <SourceTemperature depth="${this.sourceTemperature.depth}">
-                        <Use code="${this.sourceTemperature.use.code}">
-                            <English>${this.sourceTemperature.use.english}</English>
-                            <French>${this.sourceTemperature.use.french}</French>
-                        </Use>
-                    </SourceTemperature>
-                    <CoolingParameters sensibleHeatRatio="${this.coolingParameters.sensibleHeatRatio}" openableWindowArea="${this.coolingParameters.openableWindowArea}">
-                        <FansAndPump flowRate="${this.coolingParameters.fansAndPump.flowRate}" hasEnergyEfficientMotor="${this.coolingParameters.fansAndPump.hasEnergyEfficientMotor}">
-                            <Mode code="${this.coolingParameters.fansAndPump.mode.code}">
-                                <English>${this.coolingParameters.fansAndPump.mode.english}</English>
-                                <French>${this.coolingParameters.fansAndPump.mode.french}</French>
-                            </Mode>
-                            <Power isCalculated="${this.coolingParameters.fansAndPump.power}" />
-                        </FansAndPump>
-                    </CoolingParameters>
-                    <ColdClimateHeatPump heatingEfficiency="${this.coldClimateHeatPump.heatingEfficiency}" coolingEfficiency="${this.coldClimateHeatPump.coolingEfficiency}" heatingEfficiencyUnit="${this.coldClimateHeatPump.heatingEfficiencyUnit}" coolingEfficiencyUnit="${this.coldClimateHeatPump.coolingEfficiencyUnit}" capacity="${this.coldClimateHeatPump.capacity}" uiUnits="${this.coldClimateHeatPump.uiUnits}" cop="${this.coldClimateHeatPump.cop}" capacityMaintenance="${this.coldClimateHeatPump.capacityMaintenance}" />
-                </GroundHeatPump>`;
-        }
-    },
-    airConditioning: {
-        equipmentInformation: {energystar: null, manufacturer: null, model: null},
-        equipment: {
-            crankcaseHeater: null,
-            type: {tag: null, code: null, english: null, french: null},
-        },
-        specifications: {
-            sizingFactor: null,
-            ratedCapacity: {code: null, value: null, uiUnits: null, english: null, french: null},
-            efficiency: {isCop: null, unit: null, value: null}
-        },
-        coolingParameters: {
-            sensibleHeatRatio: null,
-            openableWindowArea: null,
-            fansAndPump: {
-                flowRate: null,
-                hasEnergyEfficientMotor: null,
-                mode: {code: null, english: null, french: null},
-                power: {isCalculated: null}
+    hrv: {
+        supplyFlowrate: null,
+        exhaustFlowrate: null,
+        fanPower1: null,
+        isDefaultFanPower: null,
+        isEnergyStar: null,
+        isHomeVentilatingInstituteCertified: null,
+        isSupplemental: null,
+        equipmentInformation: {manufacturer: null, model: null},
+        ventilatorType: {code: null, english: null, french: null},
+        operationSchedule: {code: null, value: null, english: null, french: null},
+        coldAirDucts: {
+            supply:{
+                length: null, diameter: null, insulation: null,
+                location: {code: null, english: null, french: null},
+                type: {code: null, english: null, french: null},
+                sealing: {code: null, english: null, french: null},
+            },
+            exhaust:{
+                length: null, diameter: null, insulation: null,
+                location: {code: null, english: null, french: null},
+                type: {code: null, english: null, french: null},
+                sealing: {code: null, english: null, french: null},
             }
         },
         xmlOutput() {
-            const Type = `<${this.equipment.type.tag} code="${this.equipment.type.code}">
-                            <English>${this.equipment.type.english}</English>
-                            <French>${this.equipment.type.french}</French>
-                        </${this.equipment.type.tag}>`;
-            return `<AirConditioning>
-                    <EquipmentInformation energystar="${this.equipmentInformation.energystar}">
+            return `<Hrv supplyFlowrate="${this.supplyFlowrate}" exhaustFlowrate="${this.exhaustFlowrate}" fanPower1="${this.fanPower1}" isDefaultFanpower="${this.isDefaultFanPower}" isEnergyStar="${this.isEnergyStar}" isHomeVentilatingInstituteCertified="${this.isHomeVentilatingInstituteCertified}" isSupplemental="${this.isSupplemental}">
+                    <EquipmentInformation>
                         <Manufacturer>${this.equipmentInformation.manufacturer}</Manufacturer>
                         <Model>${this.equipmentInformation.model}</Model>
                     </EquipmentInformation>
-                    <Equipment crankcaseHeater="${this.equipment.crankcaseHeater}">
-                        ${Type}
-                    </Equipment>
-                    <Specifications>
-                         <RatedCapacity code="${this.specifications.ratedCapacity.code}" value="${this.specifications.ratedCapacity.value}" uiUnits="${this.specifications.ratedCapacity.uiUnits}">
-                            <English>${this.specifications.ratedCapacity.english}</English>
-                            <French>${this.specifications.ratedCapacity.french}</French>
-                        </RatedCapacity>
-                        <Efficiency isCop="${this.specifications.efficiency.isCop}" unit="${this.specifications.efficiency.unit}" value="${this.specifications.efficiency.value}" />
-                    </Specifications>
-                    <CoolingParameters sensibleHeatRatio="${this.coolingParameters.sensibleHeatRatio}" openableWindowArea="${this.coolingParameters.openableWindowArea}">
-                        <FansAndPump flowRate="${this.coolingParameters.fansAndPump.flowRate}" hasEnergyEfficientMotor="${this.coolingParameters.fansAndPump.hasEnergyEfficientMotor}">
-                            <Mode code="${this.coolingParameters.fansAndPump.mode.code}">
-                                <English>${this.coolingParameters.fansAndPump.mode.english}</English>
-                                <French>${this.coolingParameters.fansAndPump.mode.french}</French>
-                            </Mode>
-                            <Power isCalculated="${this.coolingParameters.fansAndPump.power}" />
-                        </FansAndPump>
-                    </CoolingParameters>
-                </AirConditioning>`;
-        }
-    },
-};
-const supplementaryHeatingSystems = {
-    system: {
-        rank: null,
-        equipmentInformation: {csaEpa: null, manufacturer: null, model: null, description: null},
-        equipment: {
-            energySource: {code: null, english: null, french: null},
-            type: {code: null, english: null, french: null}
-        },
-        specifications: {
-            efficiency: null,
-            pilotLight: null,
-            damperClosed: null,
-            yearMade: {code: null, english: null, french: null},
-            usage: {code: null, english: null, french: null},
-            locationHeated: { code: null, value: null, english: null, french: null},
-            flue: {isInterior: null, diameter: null, type: {code: null, english: null, french: null}},
-            outputCapacity: {value: null, uiUnits: null}
-        }
-    },
-    xmlOutput() {
-        return `<System rank="1">
-                    <EquipmentInformation csaEpa="${this.system.equipmentInformation.csaEpa}">
-                        <Manufacturer>${this.system.equipmentInformation.manufacturer}</Manufacturer>
-                        <Model>${this.system.equipmentInformation.model}</Model>
-                        <Description>${this.system.equipmentInformation.description}</Description>
-                    </EquipmentInformation>
-                    <Equipment>
-                        <EnergySource code="${this.system.equipment.energySource.code}">
-                            <English>${this.system.equipment.energySource.english}</English>
-                            <French>${this.system.equipment.energySource.french}</French>
-                        </EnergySource>
-                        <Type code="${this.system.equipment.type.code}">
-                            <English>${this.system.equipment.type.english}</English>
-                            <French>${this.system.equipment.type.french}</French>
-                        </Type>
-                    </Equipment>
-                    <Specifications efficiency="${this.system.specifications.efficiency}" pilotLight="${this.system.specifications.pilotLight}" damperClosed="${this.system.specifications.damperClosed}">
-                        <YearMade code="${this.system.specifications.yearMade.code}">
-                            <English>${this.system.specifications.yearMade.english}</English>
-                            <French>${this.system.specifications.yearMade.french}</French>
-                        </YearMade>
-                        <Usage code="${this.system.specifications.usage.code}">
-                            <English>${this.system.specifications.usage.english}</English>
-                            <French>${this.system.specifications.usage.french}</French>
-                        </Usage>
-                        <LocationHeated code="${this.system.specifications.locationHeated.code}" value="${this.system.specifications.locationHeated.value}">
-                            <English>${this.system.specifications.locationHeated.english}</English>
-                            <French>${this.system.specifications.locationHeated.french}</French>
-                        </LocationHeated>
-                        <Flue isInterior="${this.system.specifications.flue.isInterior}" diameter="${this.system.specifications.flue.diameter}">
-                            <Type code="${this.system.specifications.flue.type.code}">
-                                <English>${this.system.specifications.flue.type.english}</English>
-                                <French>${this.system.specifications.flue.type.french}</French>
+                    <VentilatorType code="${this.ventilatorType.code}">
+                        <English>${this.ventilatorType.english}</English>
+                        <French>${this.ventilatorType.french}</French>
+                    </VentilatorType>
+                    <OperationSchedule code="${this.operationSchedule.code}" value="${this.operationSchedule.value}">
+                        <English>${this.operationSchedule.english}</English>
+                        <French>${this.operationSchedule.french}</French>
+                    </OperationSchedule>
+                    <ColdAirDucts>
+                        <Supply length="${this.coldAirDucts.supply.length}" diameter="${this.coldAirDucts.supply.diameter}" insulation="${this.coldAirDucts.supply.insulation}">
+                            <Location code="${this.coldAirDucts.supply.location.code}">
+                                <English>${this.coldAirDucts.supply.location.english}</English>
+                                <French>${this.coldAirDucts.supply.location.french}</French>
+                            </Location>
+                            <Type code="${this.coldAirDucts.supply.type.code}">
+                                <English>${this.coldAirDucts.supply.type.english}</English>
+                                <French>${this.coldAirDucts.supply.type.french}</French>
                             </Type>
-                        </Flue>
-                        <OutputCapacity value="${this.system.specifications.outputCapacity.value}" uiUnits="${this.system.specifications.outputCapacity.uiUnits}" />
-                    </Specifications>
-                </System>`;
+                            <Sealing code="${this.coldAirDucts.supply.sealing.code}">
+                                <English>${this.coldAirDucts.supply.sealing.english}</English>
+                                <French>${this.coldAirDucts.supply.sealing.french}</French>
+                            </Sealing>
+                        </Supply>
+                        <Exhaust length="${this.coldAirDucts.exhaust.length}" diameter="${this.coldAirDucts.exhaust.diameter}" insulation="${this.coldAirDucts.exhaust.insulation}">
+                          <Location code="${this.coldAirDucts.exhaust.location.code}">
+                                <English>${this.coldAirDucts.exhaust.location.english}</English>
+                                <French>${this.coldAirDucts.exhaust.location.french}</French>
+                            </Location>
+                            <Type code="${this.coldAirDucts.exhaust.type.code}">
+                                <English>${this.coldAirDucts.exhaust.type.english}</English>
+                                <French>${this.coldAirDucts.exhaust.type.french}</French>
+                            </Type>
+                            <Sealing code="${this.coldAirDucts.exhaust.sealing.code}">
+                                <English>${this.coldAirDucts.exhaust.sealing.english}</English>
+                                <French>${this.coldAirDucts.exhaust.sealing.french}</French>
+                            </Sealing>
+                        </Exhaust>
+                    </ColdAirDucts>
+                </Hrv>`;
+        }
     }
-}
+};
+const energySource = {
+    electric: {code: "1", english: "Electric", french: "Électricité"},
+    naturalGas: {code: "2", english: "Natural gas", french: "Gaz naturel"},
+    oil: {code: "3", english: "Oil", french: "Mazout"},
+    propane: {code: "4", english: "Propane", french: "Propane"},
+    mixedWood: {code: "5", english: "Mixed Wood", french: "Bois mélangé"},
+    hardwood: {code: "6", english: "Hardwood", french: "Bois dur"},
+    softwood: {code: "7", english: "Softwood", french: "Bois mou"},
+    woodPellets: {code: "8", english: "Wood Pellets", french: "Granules de bois"}
+};
 export const AllStructures = () => {
     return structures;
 }
@@ -887,14 +450,10 @@ export const FacingDirection = () => {
     return facingDirection;
 }
 
-export const HeatingSystems = () => {
-    return heatingSystems;
+export const SupplementalVentilatorList = () => {
+    return ventilatorList;
 }
 
-export const CoolingSystems = () => {
-    return coolingSystems;
-}
-
-export const SupplementaryHeatingSystems = () => {
-    return supplementaryHeatingSystems;
+export const EnergySource = () => {
+    return energySource;
 }

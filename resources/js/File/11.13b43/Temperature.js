@@ -27,5 +27,13 @@ class Temperature {
             ${crawlSpace}
         </Temperatures>`;
     };
+
+    codes = {
+        allowableRise : [
+            {code: "1", english: "Low (0 deg)", french: "Basse (0 Deg)"},
+            {code: "2", english: "Medium (2.8 C = 5 F)", french: "Moyenne (2.8 C = 5 F)"},
+            {code: "3", english: "High (5.5 C = 9.9 F)", french: "Haute (5.5 C = 9.9 F)"},
+        ]
+    }
 }
 export default Temperature;

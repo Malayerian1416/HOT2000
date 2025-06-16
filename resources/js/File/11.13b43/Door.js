@@ -27,5 +27,18 @@ class Door{
                             ${windows}
                         </Components>
                     </Door>`;
+    };
+
+    codes = {
+        doorType: [
+            {code: "1", english: "Wood hollow core", french: "Bois / âme creuse"},
+            {code: "2", english: "Solid wood", french: "Bois massif"},
+            {code: "3", english: "Steel fibreglass core", french: "Acier / âme en fibre de verre"},
+            {code: "4", english: "Steel polystyrene core", french: "Acier / âme en polystyrène"},
+            {code: "5", english: "Steel Medium density spray foam core", french: "Acier / âme en mousse à vaporiser de densité moyenne"},
+            {code: "6", english: "Fibreglass polystyrene core", french: "Fibre de verre / âme en polystyrène"},
+            {code: "7", english: "Fibreglass Medium density spray foam core", french: "Fibre de verre / âme en mousse à vaporiser de densité moyenne"},
+            {code: "8", english: "User specified", french: "Spécifié par l'utilisateur"}
+        ]
     }
 }
