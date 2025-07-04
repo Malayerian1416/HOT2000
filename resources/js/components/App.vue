@@ -1,15 +1,16 @@
 <script setup>
-import {ref, reactive, onMounted, provide, watch, nextTick, watchEffect} from "vue";
+import {ref, reactive, onMounted, provide, watch, nextTick} from "vue";
 import {initFlowbite} from "flowbite";
 import Alerts from "../components/Alerts.vue";
 import Loading from "../components/Loading.vue";
 import IMask from "imask";
+import SpeechToText from "../utilities/SpeechToText.js";
+const recognizer = new SpeechToText();
 
-const props = defineProps({
-    user: Object
-});
+const props = defineProps(["user"]);
 const version = "11.13b43";
 let library;
+let recording = ref(false);
 
 let alert = reactive({show: false, type: null, message: [], timeout: null});
 let loading = ref(false);
@@ -55,6 +56,53 @@ onMounted(async () => {
     setMainElementPosition();
     document.addEventListener("onresize", setMainElementPosition)
 });
+const startMic = () => {
+    if (recognizer) {
+        recognizer.start();
+        recording.value = true;
+    }
+}
+const stopMic = (elementName) => {
+    if (recognizer) {
+        recognizer.stop();
+        recording.value = false;
+        setTimeout(() => {
+            const input = document.querySelector(`[name=${elementName}]`);
+            if (input.tagName.toLowerCase() === "input")
+                input.value = recognizer.getTranscript();
+            else if (input.tagName.toLowerCase() === "select") {
+                const exact = Array.from(input.options).find(option => {
+                    return option.text === recognizer.getTranscript()
+                });
+                const firstOfString = Array.from(input.options).find(option => {
+                    return likeWords(option.text, `${recognizer.getTranscript()}%`) && option.value !== exact?.value;
+                });
+                const lastOfString = Array.from(input.options).find(option => {
+                    return likeWords(option.text, `%${recognizer.getTranscript()}`) && option.value !== exact?.value && option.value !== firstOfString?.value;
+                });
+                const middleOfString = Array.from(input.options).find(option => {
+                    return likeWords(option.text, `%${recognizer.getTranscript()}%`) && option.value !== exact?.value && option.value !== firstOfString?.value && option.value !== lastOfString?.value;
+                });
+                input.value = exact?.value || firstOfString?.value || lastOfString?.value || middleOfString?.value;
+            }
+        },1000);
+    }
+}
+const likeWords = (text, pattern, caseSensitive = false) => {
+
+    let regexPattern = pattern.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
+
+    regexPattern = regexPattern.replace(/%/g, '.*');
+    regexPattern = regexPattern.replace(/_/g, '.');
+
+    regexPattern = `^${regexPattern}$`;
+
+    const flags = caseSensitive ? '' : 'i';
+
+    const regex = new RegExp(regexPattern, flags);
+    return regex.test(text);
+}
+
 const setMainElementPosition = () => {
     const navElement = document.getElementById("nav");
     const mainElement = document.getElementById("main");
@@ -63,12 +111,22 @@ const setMainElementPosition = () => {
 const maskElement = () => {
     const phoneMasks = document.querySelectorAll(".phoneMask");
     const numberMasks = document.querySelectorAll(".numberMask");
+    const postalCodeMasks = document.querySelectorAll(".postalCodeMask");
+    const alphanumericMasks = document.querySelectorAll(".alphanumericMasks");
     Array.from(phoneMasks).forEach((element) => {
         const mask = IMask(element, {mask: '000-000-0000', overwrite: true});
         mask.updateValue(element.value)
     });
     Array.from(numberMasks).forEach((element) => {
         const mask = IMask(element, {mask: Number, overwrite: true});
+        mask.updateValue(element.value)
+    });
+    Array.from(postalCodeMasks).forEach((element) => {
+        const mask = IMask(element, {mask: '{a}{0}{a} {0}{a}{0}', overwrite: true});
+        mask.updateValue(element.value)
+    });
+    Array.from(alphanumericMasks).forEach((element) => {
+        const mask = IMask(element, {mask: /^[a-zA-Z0-9]+$/, overwrite: true});
         mask.updateValue(element.value)
     });
 };
@@ -135,6 +193,11 @@ provide('buttonLoading', buttonLoading);
 provide('maskElement', maskElement);
 provide('filterTables', filterTables);
 provide("inputClass", inputClass);
+provide("startMic", startMic);
+provide("stopMic", stopMic);
+provide("recording", recording);
+provide("likeWords", likeWords);
+
 </script>
 
 <template>
@@ -857,14 +920,9 @@ provide("inputClass", inputClass);
                         <a
                             role="button"
                             class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                            >
-                            <svg
-                                aria-hidden="true"
-                                class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
+                            @click="component = 'house-file'"
+                        >
+                            <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                                 <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                             </svg>

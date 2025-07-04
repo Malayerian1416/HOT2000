@@ -38,5 +38,18 @@ class House {
         hotWater: null,
     };
 
+    codes = {
+        houseType: [
+            {code: "1", english: "Single Detached", french: "Détaché"},
+            {code: "6", english: "Row house, end unit", french: "Rangée, unité d'extrémité"},
+            {code: "8", english: "Row house, middle unit", french: "Rangée, unité du milieu"},
+        ],
+        planShape: [
+
+        ],
+        storeys: [
+
+        ]
+    }
 }
 export default House;

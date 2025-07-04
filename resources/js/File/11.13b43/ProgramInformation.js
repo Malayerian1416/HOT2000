@@ -23,7 +23,8 @@ class ProgramInformation {
         companyExtension: null,
         company: null,
         builderName: null,
-        homeownerAuthorizationId: null
+        homeownerAuthorizationId: null,
+        notes: null
     };
     client = {
         name: {first: null, last: null},

@@ -216,17 +216,17 @@ const insulationLayer2 = [
     {englishName: "89 mm (3.5 in) Medium density spray foam", frenchName: "None", code: "G"},
 ];
 
-const facingDirection ={
-    notApplicable : {englishName: "N/A", frenchName: "S/O", code: "0"},
-    south : {englishName: "South", frenchName: "Sud", code: "1"},
-    southEast : {englishName: "Southeast", frenchName: "Sud-est", code: "2"},
-    east : {englishName: "East", frenchName: "Est", code: "3"},
-    northEast : {englishName: "Northeast", frenchName: "Nord-est", code: "4"},
-    north : {englishName: "North", frenchName: "Nord", code: "5"},
-    northWest : {englishName: "Northwest", frenchName: "Nord-ouest", code: "6"},
-    west : {englishName: "West", frenchName: "Ouest", code: "7"},
-    southWest : {englishName: "Southwest", frenchName: "Sud-ouest", code: "8"},
-};
+const facingDirection = [
+    {english: "N/A", french: "S/O", code: "0"},
+    {english: "South", french: "Sud", code: "1"},
+    {english: "Southeast", french: "Sud-est", code: "2"},
+    {english: "East", french: "Est", code: "3"},
+    {english: "Northeast", french: "Nord-est", code: "4"},
+    {english: "North", french: "Nord", code: "5"},
+    {english: "Northwest", french: "Nord-ouest", code: "6"},
+    {english: "West", french: "Ouest", code: "7"},
+    {english: "Southwest", french: "Sud-ouest", code: "8"}
+];
 
 const sheathing = [
     {englishName: "None", frenchName: "None", code: "0"},
