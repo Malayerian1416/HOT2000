@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1098.89 234.85">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3bb54a;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Ubuntu-BoldItalic, Ubuntu;
+        font-size: 220px;
+        font-style: italic;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        fill: #21409a;
+        font-family: Ubuntu-Medium, Ubuntu;
+        font-size: 200px;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="512.68" y="2.43" width="586.21" height="214.47"/>
+  <text class="cls-3" transform="translate(0 179.03)"><tspan x="0" y="0">ENER</tspan></text>
+  <text class="cls-2" transform="translate(521.37 186.23)"><tspan x="0" y="0">FAST</tspan></text>
+</svg>

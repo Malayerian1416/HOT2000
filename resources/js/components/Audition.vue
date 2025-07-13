@@ -35,6 +35,14 @@ const progressChecker = (step) => {
             }
             break;
         }
+        case 2: {
+            result = {
+                frontOrientation: houseFile.value?.frontOrientation !== null,
+                houseType: houseFile.value?.houseType !== null,
+                numberOfFloors: houseFile.value?.numberOfFloors !== null
+            }
+            break;
+        }
     }
     result.progress = () => {
         let progressBarWidth = 0;
@@ -95,17 +103,17 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CLIENT INFORMATION</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i v-if="progressChecker(1).companyAndFileId" class="fa fa-check text-green-500"></i>
                                 <i v-else class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Company and File ID</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i v-if="progressChecker(1).clientInformation" class="fa fa-check text-green-500"></i>
                                 <i v-else class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Client information</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i v-if="progressChecker(1).clientAddress" class="fa fa-check text-green-500"></i>
                                 <i v-else class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Client address</span>
@@ -125,17 +133,25 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">HOUSE DETAILS </h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
-                                <i class="fa fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
+                            <li class="flex flex-row items-center justify-items-start gap-2">
+                                <i v-if="progressChecker(1).companyAndFileId" class="fa fa-check text-green-500"></i>
+                                <i v-else class="fa fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-700 dark:text-gray-400">Front Orientation</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
-                                <i class="fa fa-times text-red-500"></i>
-                                <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
+                            <li class="flex flex-row items-center justify-items-start gap-2">
+                                <i v-if="progressChecker(1).companyAndFileId" class="fa fa-check text-green-500"></i>
+                                <i v-else class="fa fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-700 dark:text-gray-400">House Type</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
-                                <i class="fa fa-check text-green-500"></i>
-                                <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
+                            <li class="flex flex-row items-center justify-items-start gap-2">
+                                <i v-if="progressChecker(1).companyAndFileId" class="fa fa-check text-green-500"></i>
+                                <i v-else class="fa fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-700 dark:text-gray-400">Number of Floors</span>
+                            </li>
+                            <li class="flex flex-row items-center justify-items-start gap-2">
+                                <i v-if="progressChecker(1).companyAndFileId" class="fa fa-check text-green-500"></i>
+                                <i v-else class="fa fa-times text-red-500"></i>
+                                <span class="text-sm text-gray-700 dark:text-gray-400">Weather City</span>
                             </li>
                         </ul>
                         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 my-2">
@@ -143,7 +159,7 @@ const fetchHouseFile = async () =>{
                         </div>
                     </div>
                 </div>
-                <div class="bg-white border cursor-pointer group border-gray-200 hover:border-blue-500 hover:bg-gray-900 transition-all hover:border-blue-500 hover:bg-gray-900 transition-all rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                <div class="bg-white border cursor-pointer group border-gray-200 hover:border-blue-500 hover:bg-gray-900 transition-all rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <div class="w-fit overflow-hidden rounded-t-lg bg-white">
                             <img class="group-hover:scale-110" src="../../images/audition/plan.jpg" alt="" />
@@ -154,15 +170,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">PLAN</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -181,15 +197,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">ATTIC</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -208,15 +224,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">MAIN WALLS</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -235,15 +251,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">EXPOSED FLOORS</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -262,15 +278,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">FOUNDATION</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -289,15 +305,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">BLOWER DOOR TEST</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -316,15 +332,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">HEATING/COOLING</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -343,15 +359,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">DHW</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -370,15 +386,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">WINDOWS/DOORS</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
@@ -399,15 +415,15 @@ const fetchHouseFile = async () =>{
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">VENTILATION</h5>
                         </a>
                         <ul>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Name & Family</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-times text-red-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>
-                            <li class="flex flex-row items-center justify-items-start gap-1">
+                            <li class="flex flex-row items-center justify-items-start gap-2">
                                 <i class="fa fa-check text-green-500"></i>
                                 <span class="text-sm text-gray-700 dark:text-gray-400">Phone and Email</span>
                             </li>

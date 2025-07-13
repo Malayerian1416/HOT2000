@@ -4,13 +4,11 @@ import {initFlowbite} from "flowbite";
 import Alerts from "../components/Alerts.vue";
 import Loading from "../components/Loading.vue";
 import IMask from "imask";
-import SpeechToText from "../utilities/SpeechToText.js";
-const recognizer = new SpeechToText();
+
 
 const props = defineProps(["user"]);
 const version = "11.13b43";
 let library;
-let recording = ref(false);
 
 let alert = reactive({show: false, type: null, message: [], timeout: null});
 let loading = ref(false);
@@ -56,52 +54,8 @@ onMounted(async () => {
     setMainElementPosition();
     document.addEventListener("onresize", setMainElementPosition)
 });
-const startMic = () => {
-    if (recognizer) {
-        recognizer.start();
-        recording.value = true;
-    }
-}
-const stopMic = (elementName) => {
-    if (recognizer) {
-        recognizer.stop();
-        recording.value = false;
-        setTimeout(() => {
-            const input = document.querySelector(`[name=${elementName}]`);
-            if (input.tagName.toLowerCase() === "input")
-                input.value = recognizer.getTranscript();
-            else if (input.tagName.toLowerCase() === "select") {
-                const exact = Array.from(input.options).find(option => {
-                    return option.text === recognizer.getTranscript()
-                });
-                const firstOfString = Array.from(input.options).find(option => {
-                    return likeWords(option.text, `${recognizer.getTranscript()}%`) && option.value !== exact?.value;
-                });
-                const lastOfString = Array.from(input.options).find(option => {
-                    return likeWords(option.text, `%${recognizer.getTranscript()}`) && option.value !== exact?.value && option.value !== firstOfString?.value;
-                });
-                const middleOfString = Array.from(input.options).find(option => {
-                    return likeWords(option.text, `%${recognizer.getTranscript()}%`) && option.value !== exact?.value && option.value !== firstOfString?.value && option.value !== lastOfString?.value;
-                });
-                input.value = exact?.value || firstOfString?.value || lastOfString?.value || middleOfString?.value;
-            }
-        },1000);
-    }
-}
-const likeWords = (text, pattern, caseSensitive = false) => {
 
-    let regexPattern = pattern.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1');
 
-    regexPattern = regexPattern.replace(/%/g, '.*');
-    regexPattern = regexPattern.replace(/_/g, '.');
-
-    regexPattern = `^${regexPattern}$`;
-
-    const flags = caseSensitive ? '' : 'i';
-
-    const regex = new RegExp(regexPattern, flags);
-    return regex.test(text);
-}
 
 const setMainElementPosition = () => {
     const navElement = document.getElementById("nav");
@@ -178,25 +132,21 @@ const filterTables = (inputElement) => {
         }
     }
 };
-async function loadLibrary(version) {
-    const path = `../File/${version}/HouseFile.js`;
-    try {
-        const module = await import(path);
-        return new module.default;
-    } catch (error) {
-        console.error("Error loading module:", error);
-    }
-}
+// async function loadLibrary(version) {
+//     const path = `../File/${version}/HouseFile.js`;
+//     try {
+//         const module = await import(path);
+//         return new module.default;
+//     } catch (error) {
+//         console.error("Error loading module:", error);
+//     }
+// }
 provide("alert", alert);
 provide('loading', loading);
 provide('buttonLoading', buttonLoading);
 provide('maskElement', maskElement);
 provide('filterTables', filterTables);
 provide("inputClass", inputClass);
-provide("startMic", startMic);
-provide("stopMic", stopMic);
-provide("recording", recording);
-provide("likeWords", likeWords);
 
 </script>
 
@@ -243,11 +193,10 @@ provide("likeWords", likeWords);
                     </button>
                     <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
                         <img
-                            src="https://flowbite.s3.amazonaws.com/logo.svg"
+                            src="../../images/logo.svg"
                             class="mr-3 h-8"
                             alt="Flowbite Logo"
                         />
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
                     </a>
                 </div>
                 <div class="flex items-center lg:order-2">

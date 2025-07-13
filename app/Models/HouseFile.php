@@ -21,7 +21,7 @@ class HouseFile extends Model
     }
     use softDeletes;
     protected $table = "house_files";
-    protected $fillable = ["userId","companyId","fileId","clientFirstName","clientLastName","clientPhone","clientEmail","street","unit","city","region","postalCode","pdfReady","h2kReady","imagesReady","status","notes"];
+    protected $fillable = ["userId","companyId","fileId","clientFirstName","clientLastName","clientPhone","clientEmail","street","unit","city","region","postalCode","pdfReady","h2kReady","imagesReady","status","notes","appointment"];
 
     protected $appends = ["clientName"];
 

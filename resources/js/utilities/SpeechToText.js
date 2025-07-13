@@ -1,27 +1,27 @@
 import startMic from '../../sounds/startMic.wav';
 import stopMic from '../../sounds/stopMic.wav';
 class SpeechToText {
-    constructor(lang = 'en-US') {
+    constructor(lang = 'en-US', continuous = true, interimResults = false) {
         this.micStart = new Audio(`${startMic}`);
-        this.micStart.volume = 1;
+        this.micStart.volume = 0.3;
         this.micStop = new Audio(`${stopMic}`);
-        this.micStop.volume = 1;
+        this.micStop.volume = 0.3;
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             console.error("Web Speech API is not supported in this browser.");
             return null;
         }
-
         this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         this.recognition.lang = lang;
-        this.recognition.continuous = false;
-        this.recognition.interimResults = false;
-        this.transcript = '';
+        this.recognition.continuous = continuous;
+        this.recognition.interimResults = interimResults;
+        this.interimTranscript = '';
+        this.finalTranscript = [];
         this.isListening = false;
 
-        // Event handlers
         this.recognition.onresult = (event) => {
-            const lastResult = event.results[event.results.length - 1];
-            this.transcript = lastResult[0].transcript;
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                this.finalTranscript += event.results[i][0].transcript + ".";
+            }
         };
 
         this.recognition.onerror = (event) => {
@@ -30,7 +30,10 @@ class SpeechToText {
         };
 
         this.recognition.onend = () => {
-            this.isListening = false;
+            if (this.isListening) {
+                console.log(this.finalTranscript)
+                this.recognition.start()
+            }
         };
     }
 
@@ -40,7 +43,8 @@ class SpeechToText {
             return;
         }
         if (!this.isListening) {
-            this.transcript = '';
+            this.interimTranscript = '';
+            this.finalTranscript = [];
             this.recognition.start();
             this.micStart.play().then();
             this.isListening = true;
@@ -55,8 +59,11 @@ class SpeechToText {
         }
     }
 
-    getTranscript() {
-        return this.transcript;
+    getFullTranscript() {
+        return this.finalTranscript.split(/(?<=[.!?])\s+/);
+    }
+    getInterimTranscript() {
+        return this.interimTranscript;
     }
 }
 export default SpeechToText;
